@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "hello-flask-poetry"
+version = "0.1.0"
+description = ""
+authors = ["Donatas Rasiukevicius <donatas@fly.io>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^3.0.3"
+pymongo = "^4.3.3"  # versi contoh
+flask-bcrypt = "^1.0.1"  # versi contoh
+pyjwt = "^2.4.0"  # versi contoh
+Flask-PyMongo = "^2.3.0"
+Flask-Cors = "^5.0.0"
+flask_mail = "^0.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

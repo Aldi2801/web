@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Pelajaran MTs Al Huda Reban</title>
+    <style>
+        /* Styling Umum */
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #a6c1ee, #fbc2eb);
+            /* Soft gradient background */
+        }
+        
+        h1,
+        h3 {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInSlide 1s forwards;
+        }
+        
+        h1 {
+            color: #ecf0f1;
+            /* Ganti warna teks menjadi lebih terang */
+            animation-delay: 0.5s;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-top:0px;
+        }
+        
+        h3 {
+            color: #ecf0f1;
+            /* Ganti warna teks menjadi lebih terang */
+            animation-delay: 1s;
+            font-size: 1.5rem;
+        }
+        /* Styling Tabel */
+        
+        .container-table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInSlide 1s forwards;
+            animation-delay: 1.5s;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .container-keterangan{
+            width: 90%;
+            margin: 30px auto;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInSlide 1s forwards;
+            animation-delay: 1.5s;
+        }
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        th {
+            background-color: #2980b9;
+            color: white;
+            text-transform: uppercase;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+        
+        tr:nth-child(odd) {
+            background-color: #ecf0f1;
+        }
+        
+        tr:hover {
+            background-color: #dfe6e9;
+        }
+        
+        td {
+            color: #2c3e50;
+        }
+        /* Header Style */
+        /* Header Style */
+        
+        header {
+            background-color: #34495e;
+            /* Ganti ke warna yang lebih gelap agar teks putih lebih kontras */
+            color: white;
+            /* Pastikan teks berwarna putih */
+            padding-bottom: 30px;
+            padding-top: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-bottom: 3px solid #2980b9;
+        }
+        .logout-container{
+            text-align: end;
+            padding-right: 20px;
+        }
+        .logout-button {
+            top: 20px;
+            /* Mengatur jarak dari atas */
+            right: 20px;
+            /* Mengatur jarak dari kanan */
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logout-button:hover {
+            background-color: #2980b9;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        /* Keyframes for Fade In and Slide */
+        
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Responsiveness */
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            .container-table {
+                width: 100%;
+                font-size: 0.9rem;
+            }
+            .container-keterangan {
+                width:768px;
+                font-size: 0.9rem;
+            }
+            .logout-button {
+                font-size: 0.9rem;
+                padding: 10px 15px;
+            }
+            body{
+                width:768px;
+                background: linear-gradient(to top, #a6c1ee, #fbc2eb);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logout-container">
+        <button class="logout-button" onclick="handleLogout()">Logout</button>
+        </div>
+        <h1>Jadwal Pelajaran MTs Al Huda Reban</h1>
+        <h3>Tahun Pelajaran 2024/2025 - Semester Genap</h3>
+    </header>
+
+    <table class="container-table">
+        <thead>
+            <tr>
+                <th>Hari</th>
+                <th>Waktu</th>
+                <th>Jam Ke</th>
+                <th>7a</th>
+                <th>7b</th>
+                <th>7c</th>
+                <th>8a</th>
+                <th>8b</th>
+                <th>8c</th>
+                <th>9a</th>
+                <th>9b</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Jadwal Hari Senin -->
+            <tr>
+                <td rowspan="7">Senin</td>
+                <td>07.00 - 07.40</td>
+                <td>1</td>
+                <td colspan="9">Upacara</td>
+            </tr>
+            <tr>
+                <td>07.40 - 08.20</td>
+                <td>2</td>
+                <td>K1</td>
+                <td>C7</td>
+                <td>D11</td>
+                <td>B15</td>
+                <td>F7</td>
+                <td>H12</td>
+                <td>H12</td>
+                <td>C7</td>
+            </tr>
+            <tr>
+                <td>08.20 - 09.00</td>
+                <td>3</td>
+                <td>K1</td>
+                <td>C7</td>
+                <td>D11</td>
+                <td>B15</td>
+                <td>F7</td>
+                <td>H12</td>
+                <td>H12</td>
+                <td>C7</td>
+            </tr>
+            <tr>
+                <td>09.00 - 09.40</td>
+                <td>4</td>
+                <td>L9</td>
+                <td>L12</td>
+                <td>H12</td>
+                <td>K8</td>
+                <td>C7</td>
+                <td>F9</td>
+                <td>F9</td>
+                <td>L9</td>
+            </tr>
+            <tr>
+                <td>09.40 - 10.20</td>
+                <td>5</td>
+                <td>L9</td>
+                <td>L12</td>
+                <td>H12</td>
+                <td>K8</td>
+                <td>C7</td>
+                <td>F9</td>
+                <td>F9</td>
+                <td>L9</td>
+            </tr>
+            <tr>
+                <td>10.20 - 11.00</td>
+                <td>6</td>
+                <td>K8</td>
+                <td>K1</td>
+                <td>C7</td>
+                <td>C9</td>
+                <td>G15</td>
+                <td>L6</td>
+                <td>K7</td>
+                <td>F9</td>
+            </tr>
+            <tr>
+                <td>11.00 - 11.15</td>
+                <td>ISTIRAHAT</td>
+                <td colspan="10"></td>
+            </tr>
+
+            <!-- Jadwal Hari Selasa -->
+            <tr>
+                <td rowspan="6">Selasa</td>
+                <td>07.00 - 07.40</td>
+                <td>1</td>
+                <td>K8</td>
+                <td>K11</td>
+                <td>G4</td>
+                <td>E6</td>
+                <td>C7</td>
+                <td>D9</td>
+                <td>G15</td>
+                <td>C15</td>
+            </tr>
+            <tr>
+                <td>07.40 - 08.20</td>
+                <td>2</td>
+                <td>K8</td>
+                <td>K11</td>
+                <td>G4</td>
+                <td>E6</td>
+                <td>C7</td>
+                <td>D9</td>
+                <td>G15</td>
+                <td>C15</td>
+            </tr>
+            <tr>
+                <td>08.20 - 09.00</td>
+                <td>3</td>
+                <td>F9</td>
+                <td>G4</td>
+                <td>G15</td>
+                <td>C7</td>
+                <td>C10</td>
+                <td>D14</td>
+                <td>B7</td>
+                <td>A8</td>
+            </tr>
+            <tr>
+                <td>09.00 - 09.40</td>
+                <td>4</td>
+                <td>B7</td>
+                <td>A8</td>
+                <td>C9</td>
+                <td>D11</td>
+                <td>G15</td>
+                <td>F10</td>
+                <td>F10</td>
+                <td>C15</td>
+            </tr>
+            <tr>
+                <td>09.40 - 10.20</td>
+                <td>5</td>
+                <td>G10</td>
+                <td>D11</td>
+                <td>E10</td>
+                <td>C15</td>
+                <td>C7</td>
+                <td>H12</td>
+                <td>G9</td>
+                <td>E9</td>
+            </tr>
+            <tr>
+                <td>10.20 - 11.00</td>
+                <td>6</td>
+                <td>C15</td>
+                <td>C7</td>
+                <td>E10</td>
+                <td>H12</td>
+                <td>G9</td>
+                <td>E9</td>
+                <td>D14</td>
+                <td>C10</td>
+            </tr>
+
+             <!-- Jadwal Hari Rabu -->
+            <tr>
+                <td rowspan="6">Rabu</td>
+                <td>07.00 - 07.40</td>
+                <td>1</td>
+                <td>C7</td>
+                <td>C9</td>
+                <td>F7</td>
+                <td>F8</td>
+                <td>H12</td>
+                <td>H16</td>
+                <td>K15</td>
+                <td>C9</td>
+            </tr>
+            <tr>
+                <td>07.40 - 08.20</td>
+                <td>2</td>
+                <td>C7</td>
+                <td>C9</td>
+                <td>F7</td>
+                <td>F8</td>
+                <td>H12</td>
+                <td>H16</td>
+                <td>K15</td>
+                <td>C9</td>
+            </tr>
+            <tr>
+                <td>08.20 - 09.00</td>
+                <td>3</td>
+                <td>G14</td>
+                <td>E3</td>
+                <td>K8</td>
+                <td>G10</td>
+                <td>H9</td>
+                <td>L12</td>
+                <td>G14</td>
+                <td>D9</td>
+            </tr>
+            <tr>
+                <td>09.00 - 09.40</td>
+                <td>4</td>
+                <td>G14</td>
+                <td>E3</td>
+                <td>K8</td>
+                <td>G10</td>
+                <td>H9</td>
+                <td>L12</td>
+                <td>G14</td>
+                <td>D9</td>
+            </tr>
+            <tr>
+                <td>09.40 - 10.20</td>
+                <td>5</td>
+                <td>K11</td>
+                <td>F15</td>
+                <td>H12</td>
+                <td>E3</td>
+                <td>K15</td>
+                <td>L6</td>
+                <td>K8</td>
+                <td>K7</td>
+            </tr>
+            <tr>
+                <td>10.20 - 11.00</td>
+                <td>6</td>
+                <td>K11</td>
+                <td>F15</td>
+                <td>H12</td>
+                <td>E3</td>
+                <td>K15</td>
+                <td>L6</td>
+                <td>K8</td>
+                <td>K7</td>
+            </tr>
+
+            <!-- Jadwal Hari Kamis -->
+            <tr>
+                <td rowspan="6">Kamis</td>
+                <td>07.00 - 07.40</td>
+                <td>1</td>
+                <td>H10</td>
+                <td>C15</td>
+                <td>G7</td>
+                <td>E15</td>
+                <td>F6</td>
+                <td>H16</td>
+                <td>D11</td>
+                <td>L8</td>
+            </tr>
+            <tr>
+                <td>07.40 - 08.20</td>
+                <td>2</td>
+                <td>H10</td>
+                <td>C15</td>
+                <td>G7</td>
+                <td>E15</td>
+                <td>F6</td>
+                <td>H16</td>
+                <td>D11</td>
+                <td>L8</td>
+            </tr>
+            <tr>
+                <td>08.20 - 09.00</td>
+                <td>3</td>
+                <td>E10</td>
+                <td>E14</td>
+                <td>K10</td>
+                <td>H8</td>
+                <td>L12</td>
+                <td>E3</td>
+                <td>K7</td>
+                <td>K10</td>
+            </tr>
+            <tr>
+                <td>09.00 - 09.40</td>
+                <td>4</td>
+                <td>E10</td>
+                <td>E14</td>
+                <td>K10</td>
+                <td>H8</td>
+                <td>L12</td>
+                <td>E3</td>
+                <td>K7</td>
+                <td>K10</td>
+            </tr>
+            <tr>
+                <td>09.40 - 10.20</td>
+                <td>5</td>
+                <td>C5</td>
+                <td>K8</td>
+                <td>K7</td>
+                <td>K6</td>
+                <td>G15</td>
+                <td>H12</td>
+                <td>E10</td>
+                <td>G15</td>
+            </tr>
+            <tr>
+                <td>10.20 - 11.00</td>
+                <td>6</td>
+                <td>C5</td>
+                <td>K8</td>
+                <td>K7</td>
+                <td>K6</td>
+                <td>G15</td>
+                <td>H12</td>
+                <td>E10</td>
+                <td>G15</td>
+            </tr>
+
+            <!-- Jadwal Hari Jumat -->
+            <tr>
+                <td rowspan="6">Jumat</td>
+                <td>07.00 - 07.40</td>
+                <td>1</td>
+                <td>K15</td>
+                <td>H8</td>
+                <td>E8</td>
+                <td>H8</td>
+                <td>F9</td>
+                <td>E9</td>
+                <td>D8</td>
+                <td>G8</td>
+            </tr>
+            <tr>
+                <td>07.40 - 08.20</td>
+                <td>2</td>
+                <td>K15</td>
+                <td>H8</td>
+                <td>E8</td>
+                <td>H8</td>
+                <td>F9</td>
+                <td>E9</td>
+                <td>D8</td>
+                <td>G8</td>
+            </tr>
+            <tr>
+                <td>08.20 - 09.00</td>
+                <td>3</td>
+                <td>H12</td>
+                <td>L12</td>
+                <td>G7</td>
+                <td>H7</td>
+                <td>H12</td>
+                <td>K10</td>
+                <td>K8</td>
+                <td>G14</td>
+            </tr>
+            <tr>
+                <td>09.00 - 09.40</td>
+                <td>4</td>
+                <td>H12</td>
+                <td>L12</td>
+                <td>G7</td>
+                <td>H7</td>
+                <td>H12</td>
+                <td>K10</td>
+                <td>K8</td>
+                <td>G14</td>
+            </tr>
+            <tr>
+                <td>09.40 - 10.20</td>
+                <td>5</td>
+                <td>E5</td>
+                <td>H12</td>
+                <td>G10</td>
+                <td>G12</td>
+                <td>C5</td>
+                <td>G9</td>
+                <td>G15</td>
+                <td>K10</td>
+            </tr>
+            <tr>
+                <td>10.20 - 11.00</td>
+                <td>6</td>
+                <td>E5</td>
+                <td>H12</td>
+                <td>G10</td>
+                <td>G12</td>
+                <td>C5</td>
+                <td>G9</td>
+                <td>G15</td>
+                <td>K10</td>
+            </tr>
+
+            <!-- Jadwal Hari Sabtu -->
+            <tr>
+                <td rowspan="6">Sabtu</td>
+                <td>07.00 - 07.40</td>
+                <td>1</td>
+                <td>F15</td>
+                <td>H15</td>
+                <td>K15</td>
+                <td>G9</td>
+                <td>E7</td>
+                <td>G8</td>
+                <td>D10</td>
+                <td>H9</td>
+            </tr>
+            <tr>
+                <td>07.40 - 08.20</td>
+                <td>2</td>
+                <td>F15</td>
+                <td>H15</td>
+                <td>K15</td>
+                <td>G9</td>
+                <td>E7</td>
+                <td>G8</td>
+                <td>D10</td>
+                <td>H9</td>
+            </tr>
+            <tr>
+                <td>08.20 - 09.00</td>
+                <td>3</td>
+                <td>G9</td>
+                <td>G12</td>
+                <td>H9</td>
+                <td>H10</td>
+                <td>H11</td>
+                <td>F15</td>
+                <td>K10</td>
+                <td>K15</td>
+            </tr>
+            <tr>
+                <td>09.00 - 09.40</td>
+                <td>4</td>
+                <td>G9</td>
+                <td>G12</td>
+                <td>H9</td>
+                <td>H10</td>
+                <td>H11</td>
+                <td>F15</td>
+                <td>K10</td>
+                <td>K15</td>
+            </tr>
+            <tr>
+                <td>09.40 - 10.20</td>
+                <td>5</td>
+                <td>K9</td>
+                <td>L12</td>
+                <td>E9</td>
+                <td>E10</td>
+                <td>C15</td>
+                <td>G9</td>
+                <td>K7</td>
+                <td>F15</td>
+            </tr>
+            <tr>
+                <td>10.20 - 11.00</td>
+                <td>6</td>
+                <td>K9</td>
+                <td>L12</td>
+                <td>E9</td>
+                <td>E10</td>
+                <td>C15</td>
+                <td>G9</td>
+                <td>K7</td>
+                <td>F15</td>
+            </tr>
+        </tbody>
+    </table>
+<div class="container">
+    <!-- Keterangan Guru -->
+    <h2>Kode Guru</h2>
+    <ul>
+        <li>K1: H. Jamar, S.Pd.I</li>
+        <li>K8: H. Hurwiyati, S.Pd</li>
+        <li>K11: Titik Eko Purwati, S.Pd</li>
+        <li>K15: Biyanto, S.Pd</li>
+        <li>L6: Ulinnuha, S.Pd.I</li>
+        <li>L9: Purnadi, S.Pd.S</li>
+        <li>L10: Nur Arifin, S.Pd.I</li>
+        <li>F15: Riski Arofiyah, S.Pd</li>
+    </ul>
+    <h2>Kode Mapel</h2>
+    <ul>
+        <li>K1: Bahasa Indonesia</li>
+        <li>K8: Matematika</li>
+        <li>K11: IPA</li>
+        <li>K15: IPS</li>
+        <li>L6: Bahasa Inggris</li>
+        <li>L9: Bahasa Daerah</li>
+        <li>L10: Seni Budaya</li>
+        <li>L12: PJOK</li>
+        <li>G4: Keterampilan (Khot)</li>
+        <li>G15: Tahfidz</li>
+        <li>H12: Nahwu</li>
+        <li>F7: Amaliyah Ibadah</li>
+        <li>F9: Kitab Kuning</li>
+    </ul>
+
+
+    <script>
+        async function verifyToken() {
+        // Ambil token dari localStorage
+        const token = localStorage.getItem('authToken');
+
+        // Jika tidak ada token, alihkan ke login
+        if (!token) {
+            window.location.href = "/login";
+            return;
+        }
+
+        try {
+            // Kirim permintaan verifikasi token
+            const response = await fetch('/verify-token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token  // Sertakan token dalam header
+                }
+            });
+
+            // Parsing hasil JSON dari respon
+            const result = await response.json();
+
+            // Jika token valid, simpan username dan valid ke localStorage
+            if (result.valid) {
+                localStorage.setItem('tokenValid', 'true');
+                console.log('Token valid. Username:', result.username);
+
+                // Lanjut ke halaman yang diinginkan setelah verifikasi berhasil
+            } else {
+                // Jika token invalid, arahkan ke login
+                localStorage.removeItem('authToken');
+                window.location.href = "/login";
+            }
+        } catch (error) {
+            console.error('Error verifying token:', error);
+            // Arahkan ke login jika terjadi error
+            window.location.href = "/login";
+        }
+    }
+
+    // Panggil fungsi verifikasi saat halaman dimuat
+    document.addEventListener("DOMContentLoaded", verifyToken);
+    
+        function handleLogout() {
+            alert("You have been logged out!");
+        }
+    </script>
+</body>
+
+</html>

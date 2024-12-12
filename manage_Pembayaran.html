@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Pembayaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+        
+        .payment-container {
+            background-color: #fff;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .payment-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        #total-container {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="payment-container">
+        <h2>Menu Pembayaran</h2>
+        <div class="form-group">
+            <label for="jumlah">Jumlah Pembayaran:</label>
+            <input type="number" id="jumlah" placeholder="Masukkan jumlah">
+        </div>
+        <div class="form-group">
+            <label for="metode">Metode Pembayaran:</label>
+            <select id="metode">
+                <option value="kartu kredit">Kartu Kredit</option>
+                <option value="transfer bank">Transfer Bank</option>
+                <option value="e-wallet">E-Wallet</option>
+            </select>
+        </div>
+        <button type="button" onclick="submitPayment()">Bayar</button>
+
+        <!-- Container for displaying total payment sent -->
+        <div id="total-container">
+            Total Pembayaran Terkirim: Rp <span id="total-amount">0</span>
+        </div>
+    </div>
+
+    <script>
+      async function verifyToken() {
+        // Ambil token dari localStorage
+        const token = localStorage.getItem('authToken');
+
+        // Jika tidak ada token, alihkan ke login
+        if (!token) {
+            window.location.href = "/login.html";
+            return;
+        }
+
+        try {
+            // Kirim permintaan verifikasi token
+            const response = await fetch('https://siakad-syncnau.fly.dev/verify-token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token  // Sertakan token dalam header
+                }
+            });
+
+            // Parsing hasil JSON dari respon
+            const result = await response.json();
+
+            // Jika token valid, simpan username dan valid ke localStorage
+            if (result.valid) {
+                localStorage.setItem('username', result.username);
+                localStorage.setItem('role', result.role);
+                localStorage.setItem('tokenValid', 'true');
+                console.log('Token valid. Username:', result.username);
+
+                // Lanjut ke halaman yang diinginkan setelah verifikasi berhasil
+            } else {
+                // Jika token invalid, arahkan ke login
+                localStorage.removeItem('authToken');
+                window.location.href = "/login.html";
+            }
+        } catch (error) {
+            console.error('Error verifying token:', error);
+            // Arahkan ke login jika terjadi error
+            window.location.href = "/login.html";
+        }
+    }
+
+    // Panggil fungsi verifikasi saat halaman dimuat
+    document.addEventListener("DOMContentLoaded", verifyToken);
+        // Initialize total amount
+        let totalAmount = 0;
+
+        function submitPayment() {
+            const jumlah = parseFloat(document.getElementById('jumlah').value);
+            const metode = document.getElementById('metode').value;
+
+            if (jumlah && jumlah > 0) {
+                // Update the total amount
+                totalAmount += jumlah;
+                document.getElementById('total-amount').innerText = totalAmount.toLocaleString('id-ID');
+
+                // Display success message
+                alert(`Pembayaran sebesar Rp ${jumlah.toLocaleString('id-ID')} menggunakan ${metode} berhasil!`);
+
+                // Clear input
+                document.getElementById('jumlah').value = '';
+            } else {
+                alert('Harap masukkan jumlah pembayaran yang valid.');
+            }
+        }
+    </script>
+</body>
+
+</html>

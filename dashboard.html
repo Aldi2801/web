@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Styling Umum */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+        }
+        header {
+            background: #41729f; color: #fff; padding: 20px; text-align: center;
+            position: relative; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .logout-button {position: absolute; top: 20px; right: 20px; background: #ecf0f1; color: #2c3e50; padding: 12px 20px; border-radius: 25px; cursor: pointer;}
+        .container {display: flex; padding: 20px; gap: 20px; margin-top: 10px;}
+        .sidebar, .main-content {
+            padding: 20px; border-radius: 15px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar {flex: 1; max-width: 280px; background: #e0f0f6;}
+        .main-content {flex: 3; background: #fff;}
+        nav a {
+            display: flex; align-items: center; text-decoration: none; color: #41729f;
+            font-size: 18px; padding: 12px 15px; margin: 10px 0; border-radius: 10px;
+        }
+        nav a:hover {background: #bdd8e7;}
+        .mr-2{margin-right:0.5rem;}
+    </style>
+</head>
+<body>
+    <header>
+        <button class="logout-button" onclick="handleLogout()">Logout</button>
+        <h1 class="header-title">Dashboard <span id="role-title"></span></h1>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Menu</h2>
+            <nav id="nav-menu">
+                <a href="/manage_jadwal" id="link-jadwal"><i class="fas fa-calendar-alt mr-2"></i> Jadwal</a>
+                <a href="/manage_kehadiran" id="link-kehadiran"><i class="fas fa-user-check mr-2"></i> Kehadiran</a>
+                <a href="/manage_ujian" id="link-ujian"><i class="fas fa-file-alt mr-2"></i> Ujian</a>
+            </nav>
+        </div>
+        <div class="main-content">
+            <h2>Detail <span id="role-detail"></span></h2>
+            <ul>
+                <li>Nama: <span id="username"></span></li>
+                <li id="additional-info"></li>
+                <li>Tahun Ajaran: 2024/2025 - Genap</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        async function verifyToken() {
+            const token = localStorage.getItem('authToken');
+            if (!token) return redirectToLogin();
+
+            try {
+                const res = await fetch('/verify-token', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json', 'Authorization': token}
+                });
+                const { valid, username, role } = await res.json();
+                if (valid) {
+                    localStorage.setItem('tokenValid', 'true');
+                    setupRoleBasedContent(role,username);
+                } else {
+                    redirectToLogin();
+                }
+            } catch { redirectToLogin(); }
+        }
+
+        function setupRoleBasedContent(role,username) {
+            const roleText = role === 'murid' ? 'Murid' : 'Guru';
+            document.getElementById('role-title').textContent = roleText;
+            document.getElementById('role-detail').textContent = roleText;
+            document.getElementById('username').textContent = username;
+            if (role === 'murid') {
+                document.getElementById('link-jadwal').href = "/manage_jadwal";
+                document.getElementById('link-kehadiran').href = "/daftar_hadir_ujian";
+                document.getElementById('link-ujian').href = "/daftar_hadir";
+                document.getElementById('nav-menu').insertAdjacentHTML('beforeend', `<a href="/menu_pembayaran"><i class="fas fa-credit-card mr-2"></i> Pembayaran</a>`);
+                document.getElementById('additional-info').textContent = 'Kelas: IX IPA';
+            } else {
+                document.getElementById('link-jadwal').href= "/manage_jadwal";
+                document.getElementById('link-kehadiran').href = "/manage_kehadiran";
+                document.getElementById('link-ujian').href = "/manage_ujian";
+                document.getElementById('additional-info').textContent = 'Mata Pelajaran: IPA';
+            }
+        }
+
+        function handleLogout() {
+            localStorage.clear();
+            redirectToLogin();
+        }
+
+        function redirectToLogin() {
+            window.location.href = "/login";
+        }
+
+        document.addEventListener("DOMContentLoaded", verifyToken);
+    </script>
+</body>
+</html>

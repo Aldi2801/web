@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Kehadiran Ujian</title>
+    <style>
+        /* Styling Umum */
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+            /* Gradasi warna pastel */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        h2 {
+            text-align: center;
+            color: #4a90e2;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: #f8f9fa;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 8px rgba(74, 144, 226, 0.6);
+            outline: none;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #6a1b9a, #d81b60);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+        
+        .table-container {
+            margin-top: 30px;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        table th,
+        table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        table th {
+            background-color: #6a1b9a;
+            color: white;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #eef1f5;
+        }
+        /* Efek hover untuk baris tabel */
+        
+        table tr:hover {
+            background-color: #f8f8f8;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Input Kehadiran Ujian</h2>
+        <form id="attendanceForm">
+            <div class="form-group">
+                <label for="studentName">Nama Siswa:</label>
+                <select id="studentName" required>
+                    <option value="">Pilih Nama Siswa</option>
+                    <option value="Aldi">Aldi</option>
+                    <option value="Budi">Budi</option>
+                    <option value="Citra">Citra</option>
+                    <option value="Dina">Dina</option>
+                    <option value="Eka">Eka</option>
+                    <option value="Farhan">Farhan</option>
+                    <option value="Gita">Gita</option>
+                    <option value="Hadi">Hadi</option>
+                    <option value="Indah">Indah</option>
+                    <option value="Joko">Joko</option>
+                    <option value="Kiki">Kiki</option>
+                    <option value="Lia">Lia</option>
+                    <option value="Mira">Mira</option>
+                    <option value="Nina">Nina</option>
+                    <option value="Oka">Oka</option>
+                    <option value="Putra">Putra</option>
+                    <option value="Qori">Qori</option>
+                    <option value="Rina">Rina</option>
+                    <option value="Sandi">Sandi</option>
+                    <option value="Tina">Tina</option>
+                    <option value="Umar">Umar</option>
+                    <option value="Vina">Vina</option>
+                    <option value="Wawan">Wawan</option>
+                    <option value="Xenia">Xenia</option>
+                    <option value="Yogi">Yogi</option>
+                    <option value="Zara">Zara</option>
+                    <option value="Andi">Andi</option>
+                    <option value="Bella">Bella</option>
+                    <option value="Caca">Caca</option>
+                    <option value="Dodi">Dodi</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="class">Kelas:</label>
+                <input type="text" id="class" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Mata Pelajaran:</label>
+                <input type="text" id="subject" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Tanggal:</label>
+                <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="status">Status Kehadiran Ujian:</label>
+                <select id="status" required>
+                    <option value="Hadir">Hadir</option>
+                    <option value="Sakit">Sakit</option>
+                    <option value="Izin">Izin</option>
+                    <option value="Alpa">Alpa</option>
+                </select>
+            </div>
+            <button type="submit">Tambah Ujian</button>
+        </form>
+
+        <div class="table-container">
+            <table id="attendanceTable">
+                <thead>
+                    <tr>
+                        <th>Nama Siswa</th>
+                        <th>Kelas</th>
+                        <th>Tanggal</th>
+                        <th>Status</th>
+                        <th>Mata Pelajaran</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data kehadiran akan ditambahkan di sini -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function verifyToken() {
+        // Ambil token dari localStorage
+        const token = localStorage.getItem('authToken');
+
+        // Jika tidak ada token, alihkan ke login
+        if (!token) {
+            window.location.href = "/login";
+            return;
+        }
+
+        try {
+            // Kirim permintaan verifikasi token
+            const response = await fetch('/verify-token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token  // Sertakan token dalam header
+                }
+            });
+
+            // Parsing hasil JSON dari respon
+            const result = await response.json();
+
+            // Jika token valid, simpan username dan valid ke localStorage
+            if (result.valid) {
+                localStorage.setItem('username', result.username);
+                localStorage.setItem('role', result.role);
+                localStorage.setItem('tokenValid', 'true');
+                console.log('Token valid. Username:', result.username);
+
+                // Lanjut ke halaman yang diinginkan setelah verifikasi berhasil
+            } else {
+                // Jika token invalid, arahkan ke login
+                localStorage.removeItem('authToken');
+                window.location.href = "/login";
+            }
+        } catch (error) {
+            console.error('Error verifying token:', error);
+            // Arahkan ke login jika terjadi error
+            window.location.href = "/login";
+        }
+        }
+
+        // Panggil fungsi verifikasi saat halaman dimuat
+        document.addEventListener("DOMContentLoaded", verifyToken);
+        // Menambahkan data kehadiran ke tabel
+        document.getElementById("attendanceForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const studentName = document.getElementById("studentName").value;
+            const studentClass = document.getElementById("class").value;
+            const date = document.getElementById("date").value;
+            const status = document.getElementById("status").value;
+            const subject = document.getElementById("subject").value;
+
+            const table = document.getElementById("attendanceTable").getElementsByTagName("tbody")[0];
+            const newRow = table.insertRow();
+
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+            const cell5 = newRow.insertCell(4);
+
+            cell1.textContent = studentName;
+            cell2.textContent = studentClass;
+            cell3.textContent = date;
+            cell4.textContent = status;
+            cell5.textContent = subject;
+
+            document.getElementById("attendanceForm").reset();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+Microsoft Windows [Version 10.0.22621.2134]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\MyLenovo>python --version
+Python 3.11.5
+
+C:\Users\MyLenovo>pip install flask
+Requirement already satisfied: flask in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (2.3.3)
+Requirement already satisfied: Werkzeug>=2.3.7 in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from flask) (2.3.7)
+Requirement already satisfied: Jinja2>=3.1.2 in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from flask) (3.1.2)
+Requirement already satisfied: itsdangerous>=2.1.2 in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from flask) (2.1.2)
+Requirement already satisfied: click>=8.1.3 in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from flask) (8.1.7)
+Requirement already satisfied: blinker>=1.6.2 in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from flask) (1.6.2)
+Requirement already satisfied: colorama in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from click>=8.1.3->flask) (0.4.6)
+Requirement already satisfied: MarkupSafe>=2.0 in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from Jinja2>=3.1.2->flask) (2.1.3)
+
+C:\Users\MyLenovo>flask --version
+'flask' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\MyLenovo>python -m flask
+Error: Could not locate a Flask application. Use the 'flask --app' option, 'FLASK_APP' environment variable, or a 'wsgi.py' or 'app.py' file in the current directory.
+
+Usage: python -m flask [OPTIONS] COMMAND [ARGS]...
+
+  A general utility script for Flask applications.
+
+  An application to load must be given with the '--app' option, 'FLASK_APP'
+  environment variable, or with a 'wsgi.py' or 'app.py' file in the current
+  directory.
+
+Options:
+  -e, --env-file FILE   Load environment variables from this file. python-
+                        dotenv must be installed.
+  -A, --app IMPORT      The Flask application or factory function to load, in
+                        the form 'module:name'. Module can be a dotted import
+                        or file path. Name is not required if it is 'app',
+                        'application', 'create_app', or 'make_app', and can be
+                        'name(args)' to pass arguments.
+  --debug / --no-debug  Set debug mode.
+  --version             Show the Flask version.
+  --help                Show this message and exit.
+
+Commands:
+  routes  Show the routes for the app.
+  run     Run a development server.
+  shell   Run a shell in the app context.
+
+C:\Users\MyLenovo>pip uninstall flask
+Found existing installation: Flask 2.3.3
+Uninstalling Flask-2.3.3:
+  Would remove:
+    c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\scripts\flask.exe
+    c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages\flask-2.3.3.dist-info\*
+    c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages\flask\*
+Proceed (Y/n)? y
+  Successfully uninstalled Flask-2.3.3
+
+C:\Users\MyLenovo>pip cache remove *
+Files removed: 65
+
+C:\Users\MyLenovo>pip install flask
+Collecting flask
+  Obtaining dependency information for flask from https://files.pythonhosted.org/packages/fd/56/26f0be8adc2b4257df20c1c4260ddd0aa396cf8e75d90ab2f7ff99bc34f9/flask-2.3.3-py3-none-any.whl.metadata
+  Downloading flask-2.3.3-py3-none-any.whl.metadata (3.6 kB)
+Requirement already satisfied: Werkzeug>=2.3.7 in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from flask) (2.3.7)
+Requirement already satisfied: Jinja2>=3.1.2 in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from flask) (3.1.2)
+Requirement already satisfied: itsdangerous>=2.1.2 in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from flask) (2.1.2)
+Requirement already satisfied: click>=8.1.3 in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from flask) (8.1.7)
+Requirement already satisfied: blinker>=1.6.2 in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from flask) (1.6.2)
+Requirement already satisfied: colorama in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from click>=8.1.3->flask) (0.4.6)
+Requirement already satisfied: MarkupSafe>=2.0 in c:\users\mylenovo\appdata\local\packages\pythonsoftwarefoundation.python.3.11_qbz5n2kfra8p0\localcache\local-packages\python311\site-packages (from Jinja2>=3.1.2->flask) (2.1.3)
+Downloading flask-2.3.3-py3-none-any.whl (96 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.1/96.1 kB 913.5 kB/s eta 0:00:00
+Installing collected packages: flask
+  WARNING: The script flask.exe is installed in 'C:\Users\MyLenovo\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed flask-2.3.3
+
+C:\Users\MyLenovo>flask --version
+'flask' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\MyLenovo>python -m flask --version
+Python 3.11.5
+Flask 2.3.3
+Werkzeug 2.3.7
+
+C:\Users\MyLenovo>ls

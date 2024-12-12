@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Hadir Siswa</title>
+    <style>
+        /* Styling Umum */
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 700px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        h2 {
+            text-align: center;
+            color: #4a90e2;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .table-container {
+            margin-top: 30px;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        table th,
+        table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        table th {
+            background-color: #6a1b9a;
+            color: white;
+        }
+        /* Status Colors */
+        
+        .status-hadir {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .status-izin {
+            background-color: #ffc107;
+            color: black;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .status-alpa {
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Daftar Hadir Siswa</h2>
+
+        <!-- Daftar Kehadiran -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Hari</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Senin</td>
+                        <td class="status-hadir">Hadir</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Selasa</td>
+                        <td class="status-izin">Izin</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Rabu</td>
+                        <td class="status-alpa">Alpa</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Kamis</td>
+                        <td class="status-hadir">Hadir</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Jumat Tadarus</td>
+                        <td class="status-izin">Hadir</td>
+                    </tr>
+                    <!-- Tambahkan data siswa lainnya di sini -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        async function verifyToken() {
+        // Ambil token dari localStorage
+        const token = localStorage.getItem('authToken');
+
+        // Jika tidak ada token, alihkan ke login
+        if (!token) {
+            window.location.href = "/login";
+            return;
+        }
+
+        try {
+            // Kirim permintaan verifikasi token
+            const response = await fetch('/verify-token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token  // Sertakan token dalam header
+                }
+            });
+
+            // Parsing hasil JSON dari respon
+            const result = await response.json();
+
+            // Jika token valid, simpan username dan valid ke localStorage
+            if (result.valid) {
+                localStorage.setItem('username', result.username);
+                localStorage.setItem('role', result.role);
+                localStorage.setItem('tokenValid', 'true');
+                console.log('Token valid. Username:', result.username);
+
+                // Lanjut ke halaman yang diinginkan setelah verifikasi berhasil
+            } else {
+                // Jika token invalid, arahkan ke login
+                localStorage.removeItem('authToken');
+                window.location.href = "/login";
+            }
+        } catch (error) {
+            console.error('Error verifying token:', error);
+            // Arahkan ke login jika terjadi error
+            window.location.href = "/login";
+        }
+    }
+
+    // Panggil fungsi verifikasi saat halaman dimuat
+    document.addEventListener("DOMContentLoaded", verifyToken);
+    </script>
+</body>
+
+</html>

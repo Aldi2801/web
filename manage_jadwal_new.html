@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Pelajaran MTs Al Huda Reban</title>
+    <style>
+        /* Styling Umum */
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #a6c1ee, #fbc2eb);
+            /* Soft gradient background */
+        }
+        
+        h1,
+        h3 {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInSlide 1s forwards;
+        }
+        
+        h1 {
+            color: #ecf0f1;
+            /* Ganti warna teks menjadi lebih terang */
+            animation-delay: 0.5s;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-top:0px;
+        }
+        
+        h3 {
+            color: #ecf0f1;
+            /* Ganti warna teks menjadi lebih terang */
+            animation-delay: 1s;
+            font-size: 1.5rem;
+        }
+        /* Styling Tabel */
+        
+        .container-table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInSlide 1s forwards;
+            animation-delay: 1.5s;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .container-keterangan{
+            width: 90%;
+            margin: 30px auto;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInSlide 1s forwards;
+            animation-delay: 1.5s;
+        }
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        th {
+            background-color: #2980b9;
+            color: white;
+            text-transform: uppercase;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+        
+        tr:nth-child(odd) {
+            background-color: #ecf0f1;
+        }
+        
+        tr:hover {
+            background-color: #dfe6e9;
+        }
+        
+        td {
+            color: #2c3e50;
+        }
+        /* Header Style */
+        /* Header Style */
+        
+        header {
+            background-color: #34495e;
+            /* Ganti ke warna yang lebih gelap agar teks putih lebih kontras */
+            color: white;
+            /* Pastikan teks berwarna putih */
+            padding-bottom: 30px;
+            padding-top: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-bottom: 3px solid #2980b9;
+        }
+        .d-flex{
+            display:flex;
+        }
+        .logout-container{
+            text-align: end;
+            width:50%;
+            padding-right: 20px;
+        }
+        .menu-container{
+            text-align: start;
+            width:50%;
+            padding-left: 20px;
+        }
+        .logout-button {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logout-button:hover {
+            background-color: #2980b9;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        /* Keyframes for Fade In and Slide */
+        
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Responsiveness */
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            .container-table {
+                width: 100%;
+                font-size: 0.9rem;
+            }
+            .container-keterangan {
+                width:768px;
+                font-size: 0.9rem;
+            }
+            .logout-button {
+                font-size: 0.9rem;
+                padding: 10px 15px;
+            }
+            body{
+                width:768px;
+                background: linear-gradient(to top, #a6c1ee, #fbc2eb);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="d-flex">
+        <div class="menu-container">
+        <button class="logout-button" onclick="location.href='/'">Menu</button>
+        </div>
+        <div class="logout-container">
+        <button class="logout-button" onclick="handleLogout()">Logout</button>
+        </div>
+        </div>
+        <h1>Jadwal Pelajaran MTs Al Huda Reban</h1>
+        <h3>Tahun Pelajaran 2024/2025 - Semester Genap</h3>
+    </header>
+
+    <table class="container-table"id="scheduleTable">
+        <thead>
+            <tr>
+                <th>Hari</th>
+                <th>Waktu</th>
+                <th>Jam Ke</th>
+                <th>7a</th>
+                <th>7b</th>
+                <th>7c</th>
+                <th>8a</th>
+                <th>8b</th>
+                <th>8c</th>
+                <th>9a</th>
+                <th>9b</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <div class="container-keterangan" id="container-keterangan">
+    
+    </div>
+
+
+    <script>
+        async function verifyToken() {
+        // Ambil token dari localStorage
+        const token = localStorage.getItem('authToken');
+
+        // Jika tidak ada token, alihkan ke login
+        if (!token) {
+            window.location.href = "/login";
+            return;
+        }
+
+        try {
+            // Kirim permintaan verifikasi token
+            const response = await fetch('/verify-token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token  // Sertakan token dalam header
+                }
+            });
+
+            // Parsing hasil JSON dari respon
+            const result = await response.json();
+
+            // Jika token valid, simpan username dan valid ke localStorage
+            if (result.valid) {
+                localStorage.setItem('tokenValid', 'true');
+                console.log('Token valid. Username:', result.username);
+
+                // Lanjut ke halaman yang diinginkan setelah verifikasi berhasil
+            } else {
+                // Jika token invalid, arahkan ke login
+                localStorage.removeItem('authToken');
+                window.location.href = "/login";
+            }
+        } catch (error) {
+            console.error('Error verifying token:', error);
+            // Arahkan ke login jika terjadi error
+            window.location.href = "/login";
+        }
+    }
+
+    // Panggil fungsi verifikasi saat halaman dimuat
+    document.addEventListener("DOMContentLoaded", verifyToken);
+    
+        function handleLogout() {
+            alert("You have been logged out!");
+        }
+        const scheduleTable = document.getElementById('scheduleTable').getElementsByTagName('tbody')[0];
+const schedule = [
+    {
+        "day": "Senin",
+        "sessions": [
+            {"time": "07.00 - 07.40", "period": "1", "subjects": ["Upacara", "", "", "", "", "", "", "", ""]},
+            {"time": "07.40 - 08.20", "period": "2", "subjects": ["K1", "C7", "D11", "B15", "F7", "H12", "H12", "C7"]},
+            {"time": "08.20 - 09.00", "period": "3", "subjects": ["K1", "C7", "D11", "B15", "F7", "H12", "H12", "C7"]},
+            {"time": "09.00 - 09.40", "period": "4", "subjects": ["L9", "L12", "H12", "K8", "C7", "F9", "F9", "L9"]},
+            {"time": "09.40 - 10.20", "period": "5", "subjects": ["L9", "L12", "H12", "K8", "C7", "F9", "F9", "L9"]},
+            {"time": "10.20 - 11.00", "period": "6", "subjects": ["K8", "K1", "C7", "C9", "G15", "L6", "K7", "F9"]},
+            {"time": "11.00 - 11.15", "period": "ISTIRAHAT", "subjects": ["", "", "", "", "", "", "", "", ""]}
+        ]
+    },
+    {
+        "day": "Selasa",
+        "sessions": [
+            {"time": "07.00 - 07.40", "period": "1", "subjects": ["K8", "K11", "G4", "E6", "C7", "D9", "G15", "C15"]},
+            {"time": "07.40 - 08.20", "period": "2", "subjects": ["K8", "K11", "G4", "E6", "C7", "D9", "G15", "C15"]},
+            {"time": "08.20 - 09.00", "period": "3", "subjects": ["F9", "G4", "G15", "C7", "C10", "D14", "B7", "A8"]},
+            {"time": "09.00 - 09.40", "period": "4", "subjects": ["B7", "A8", "C9", "D11", "G15", "F10", "F10", "C15"]},
+            {"time": "09.40 - 10.20", "period": "5", "subjects": ["G10", "D11", "E10", "C15", "C7", "H12", "G9", "E9"]},
+            {"time": "10.20 - 11.00", "period": "6", "subjects": ["C15", "C7", "E10", "H12", "G9", "E9", "D14", "C10"]}
+        ]
+    },
+    {
+        "day": "Rabu",
+        "sessions": [
+            {"time": "07.00 - 07.40", "period": "1", "subjects": ["C7", "C9", "F7", "F8", "H12", "H16", "K15", "C9"]},
+            {"time": "07.40 - 08.20", "period": "2", "subjects": ["C7", "C9", "F7", "F8", "H12", "H16", "K15", "C9"]},
+            {"time": "08.20 - 09.00", "period": "3", "subjects": ["G14", "E3", "K8", "G10", "H9", "L12", "G14", "D9"]},
+            {"time": "09.00 - 09.40", "period": "4", "subjects": ["G14", "E3", "K8", "G10", "H9", "L12", "G14", "D9"]},
+            {"time": "09.40 - 10.20", "period": "5", "subjects": ["K11", "F15", "H12", "E3", "K15", "L6", "K8", "K7"]},
+            {"time": "10.20 - 11.00", "period": "6", "subjects": ["K11", "F15", "H12", "E3", "K15", "L6", "K8", "K7"]}
+        ]
+    },
+    {
+        "day": "Kamis",
+        "sessions": [
+            {"time": "07.00 - 07.40", "period": "1", "subjects": ["H10", "C15", "G7", "E15", "F6", "H16", "D11", "L8"]},
+            {"time": "07.40 - 08.20", "period": "2", "subjects": ["H10", "C15", "G7", "E15", "F6", "H16", "D11", "L8"]},
+            {"time": "08.20 - 09.00", "period": "3", "subjects": ["E10", "E14", "K10", "H8", "L12", "E3", "K7", "K10"]},
+            {"time": "09.00 - 09.40", "period": "4", "subjects": ["E10", "E14", "K10", "H8", "L12", "E3", "K7", "K10"]},
+            {"time": "09.40 - 10.20", "period": "5", "subjects": ["C5", "K8", "K7", "K6", "G15", "H12", "E10", "G15"]},
+            {"time": "10.20 - 11.00", "period": "6", "subjects": ["C5", "K8", "K7", "K6", "G15", "H12", "E10", "G15"]}
+        ]
+    },
+    {
+        "day": "Jum'at",
+        "sessions":  [
+            {"time": "07.00 - 07.40", "period": "1", "subjects": [ "K15", "H8", "E8", "H8", "F9", "E9", "D8","G8"]},
+            {"time": "07.40 - 08.20", "period": "2", "subjects": [ "K15", "H8", "E8", "H8", "F9", "E9", "D8","G8"]},
+            {"time": "08.20 - 09.00", "period": "3", "subjects": [ "H12", "L12", "G7", "H7", "H12", "K10", "K8","G14"]},
+            {"time": "09.00 - 09.40", "period": "4", "subjects": [ "H12", "L12", "G7", "H7", "H12", "K10", "K8","G14"]},
+            {"time": "09.40 - 10.20", "period": "5", "subjects": [ "E5", "H12", "G10", "G12", "C5", "G9", "G15","K10"]},
+            {"time": "10.20 - 11.00", "period": "6", "subjects": [ "E5", "H12", "G10", "G12", "C5", "G9", "G15","K10"]}
+        ]
+    },
+    {
+        "day": "Sabtu",
+        "sessions":  [
+            {"time": "07.00 - 07.40", "period": "1", "subjects": [ "F15", "H15", "K15", "G9", "E7", "G8", "D10","H9"]},
+            {"time": "07.40 - 08.20", "period": "2", "subjects": [ "F15", "H15", "K15", "G9", "E7", "G8", "D10","H9"]},
+            {"time": "08.20 - 09.00", "period": "3", "subjects": [ "G9", "G12", "H9", "H10", "H11", "F15", "K10","K15"]},
+            {"time": "09.00 - 09.40", "period": "4", "subjects": [ "G9", "G12", "H9", "H10", "H11", "F15", "K10","K15"]}
+        ]
+    }
+];
+        schedule.forEach(day => {
+            day.sessions.forEach((session, index) => {
+                const row = document.createElement('tr');
+
+                if (index === 0) {
+                    const dayCell = document.createElement('td');
+                    dayCell.rowSpan = day.sessions.length;
+                    dayCell.innerText = day.day;
+                    row.appendChild(dayCell);
+                }
+
+                const timeCell = document.createElement('td');
+                timeCell.innerText = session.time;
+                row.appendChild(timeCell);
+
+                const periodCell = document.createElement('td');
+                periodCell.innerText = session.period;
+                row.appendChild(periodCell);
+                if (session.period == "ISTIRAHAT"){
+                    const subjectCell = document.createElement('td');
+                    subjectCell.colSpan = "8";
+                    subjectCell.innerText = " ";
+                    row.appendChild(subjectCell);
+                }
+                else{
+                session.subjects.some(subject => {
+                    if (subject == "Upacara"){
+                        const subjectCell = document.createElement('td');
+                        subjectCell.innerText = subject;
+                        subjectCell.colSpan = "8";
+                        row.appendChild(subjectCell);
+                        return true ;
+                    }
+                    else{
+                        const subjectCell = document.createElement('td');
+                        subjectCell.innerText = subject;
+                        row.appendChild(subjectCell);
+                    }
+                });
+                }
+
+                scheduleTable.appendChild(row);
+            });
+        });
+        // Data JSON
+const data = {
+    "kodeGuru": [
+        {"K1": "H. Jamar, S.Pd.I"},
+        {"K8": "H. Hurwiyati, S.Pd"},
+        {"K11": "Titik Eko Purwati, S.Pd"},
+        {"K15": "Biyanto, S.Pd"},
+        {"L6": "Ulinnuha, S.Pd.I"},
+        {"L9": "Purnadi, S.Pd.S"},
+        {"L10": "Nur Arifin, S.Pd.I"},
+        {"F15": "Riski Arofiyah, S.Pd"}
+    ],
+    "kodeMapel": [
+        {"K1": "Bahasa Indonesia"},
+        {"K8": "Matematika"},
+        {"K11": "IPA"},
+        {"K15": "IPS"},
+        {"L6": "Bahasa Inggris"},
+        {"L9": "Bahasa Daerah"},
+        {"L10": "Seni Budaya"},
+        {"L12": "PJOK"},
+        {"G4": "Keterampilan (Khot)"},
+        {"G15": "Tahfidz"},
+        {"H12": "Nahwu"},
+        {"F7": "Amaliyah Ibadah"},
+        {"F9": "Kitab Kuning"}
+    ]
+};
+
+// Fungsi untuk menampilkan data
+function renderList(title, items) {
+    const container = document.getElementById('container-keterangan');
+    const heading = document.createElement('h2');
+    heading.innerText = title;
+    container.appendChild(heading);
+
+    const list = document.createElement('ul');
+    items.forEach(item => {
+        const listItem = document.createElement('li');
+        const [key, value] = Object.entries(item)[0]; // Mendapatkan kunci dan nilai pertama dalam objek
+        listItem.innerText = `${key}: ${value}`;
+        list.appendChild(listItem);
+    });
+    container.appendChild(list);
+}
+
+// Render kedua list
+renderList("Kode Guru", data.kodeGuru);
+renderList("Kode Mapel", data.kodeMapel);
+        function handleLogout() {
+            localStorage.clear();
+            redirectToLogin();
+        }
+        function menu(){
+            
+        }
+
+        function redirectToLogin() {
+            window.location.href = "/login";
+        }
+    </script>
+</body>
+
+</html>
